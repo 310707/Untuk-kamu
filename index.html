@@ -1,31 +1,63 @@
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RIP.Agribisnis25.com</title>
-        <meta name="viewport" content="width=device-width, initial-scale1.0">
-    <style>
 
-        body {
-            text-align: center;
-            font-family: Arial;
-            background: #ffe6f0;
+    <!-- Security Headers -->
+    <meta http-equiv="Content-Security-Policy"
+        content="
+        default-src 'self';
+        script-src 'self';
+        style-src 'self';
+        object-src 'none';
+        base-uri 'self';
+        frame-ancestors 'none';
+        form-action 'self';
+        upgrade-insecure-requests;
+        ">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="Referrer-Policy" content="no-referrer">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+
+    <style>
+        :root {
+            --primary-bg: #ffe6f0;
+            --primary-color: #333;
+            --button-bg: #ffffff;
+            --button-hover: #f0f0f0;
+        }
+
+        * {
+            box-sizing: border-box;
         }
 
         body {
             margin: 0;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background: var(--primary-bg);
+            color: var(--primary-color);
         }
 
         .container {
             width: 100%;
             max-width: 500px;
             margin: auto;
+            padding: 20px;
+        }
+
+        h1, h2 {
+            font-size: 22px;
         }
 
         @media (max-width: 600px) {
-        }
-            h1 {
-                font-size: 20px;
+            h1, h2 {
+                font-size: 18px;
             }
+        }
+
         .hidden {
             display: none;
         }
@@ -42,48 +74,70 @@
         }
 
         button {
-            padding: 10px 20px;
+            padding: 12px 24px;
             margin-top: 20px;
             cursor: pointer;
-            background-color: white;
+            background-color: var(--button-bg);
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            transition: background 0.3s ease;
+        }
+
+        button:hover {
+            background-color: var(--button-hover);
         }
     </style>
 </head>
+
 <body>
+    <main class="container">
 
-    <!-- HALAMAN PERTAMA -->
-    <div id="home">
-        <h1>Selamat datang ❤️</h1>
-        <p>Ini adalah halaman khusus untuk kamu, supaya kamu nggak bosan</p>
-        <p>Ketika orang yang menjalankan tujuan hidupnya 
-            kemudian dia ada problem yang sangat menekan 
-            (Ferbal dan non-Ferbal) dan dia menjadi kehilangan tujuan hidup nya, 
-            maka dia bisa memetik dari kesalahan nya tersebut menjadi tujuan yang baru, 
-            jalan hidup yang baru, dan pastinya individu tersebut berusaha memperbaiki dirinya dan menjadi kan
-             masalah tersebut 
-            sebagai pengalaman nya</p>
-       
-        <button onclick="tampilkanHalaman2()">Klik di sini</button>
-    </div>
+        <!-- HALAMAN PERTAMA -->
+        <section id="home">
+            <h1>Selamat Datang ❤️</h1>
+            <p>Ini adalah halaman khusus untuk kamu, supaya kamu tidak bosan.</p>
+            <p>
+                Ketika seseorang menjalankan tujuan hidupnya lalu menghadapi tekanan besar,
+                ia bisa menjadikan kesalahan sebagai pelajaran dan membangun tujuan baru,
+                jalan hidup baru, serta memperbaiki dirinya menjadi lebih baik.
+            </p>
+            <button id="btnNext" type="button">Klik di sini</button>
+        </section>
 
-    <!-- HALAMAN KEDUA -->
-    <div id="halaman2" class="hidden">
-        <div class="heart">❤️</div>
-        <h2>Kamu adalah alasan aku tersenyum setiap hari 💕</h2>
-        <p>Terima kasih sudah menjadi bagian dari hidupku, aku suka kamu sejak awal kita bertemu</p>
-        <button onclick="kembali()">Kembali</button>
-    </div>
+        <!-- HALAMAN KEDUA -->
+        <section id="halaman2" class="hidden">
+            <div class="heart" aria-hidden="true">❤️</div>
+            <h2>Kamu adalah alasan aku tersenyum setiap hari 💕</h2>
+            <p>Terima kasih sudah menjadi bagian dari hidupku.</p>
+            <button id="btnBack" type="button">Kembali</button>
+        </section>
+
+    </main>
 
     <script>
-        function tampilkanHalaman2() {
-            document.getElementById("home").style.display = "none";
-            document.getElementById("halaman2").style.display = "block";
-        }
+        (function () {
+            "use strict";
 
-        function kembali() {
-            document.getElementById("home").style.display = "block";
-            document.getElementById("halaman2").style.display = "none";
-        }
+            const home = document.getElementById("home");
+            const halaman2 = document.getElementById("halaman2");
+            const btnNext = document.getElementById("btnNext");
+            const btnBack = document.getElementById("btnBack");
+
+            function showPage(target) {
+                home.classList.add("hidden");
+                halaman2.classList.add("hidden");
+                target.classList.remove("hidden");
+            }
+
+            btnNext.addEventListener("click", function () {
+                showPage(halaman2);
+            });
+
+            btnBack.addEventListener("click", function () {
+                showPage(home);
+            });
+
+        })();
     </script>
 
 </body>
